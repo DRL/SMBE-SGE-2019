@@ -7,7 +7,7 @@ import tqdm
 import intervals, intervaltree
 
 #change weighting of p1,p2, between!!!
-def calculate_Fst(ts, samplesize_p1=None, samplesize_p2=None, pop_id = (0,1), windowsize = 500e3, overlap=100e3, output='Fst0.csv'):
+def calculate_Fst(ts, samplesize_p1=None, samplesize_p2=None, pop_id = (0,1), windowsize = 500e3, overlap=10e3, output='Fst0.csv'):
 	#determine names of the different subsamples
 	windowsize, overlap =int(windowsize), int(overlap)
 	if not(samplesize_p1 and samplesize_p2):    
@@ -36,8 +36,7 @@ def calculate_Fst(ts, samplesize_p1=None, samplesize_p2=None, pop_id = (0,1), wi
 	###########
 	
 	#generate output: dict to pandas dataframe
-	df = pd.DataFrame.from_dict(window_Fst_dict, orient='index', columns=['start', 'stop', 'Fst'])
-	df.to_csv(output)
+	return list(window_Fst_dict.values())
 
 def windows(ts, windowsize, overlap):
 	'''
@@ -46,8 +45,9 @@ def windows(ts, windowsize, overlap):
 	value: tuple ([start, end window], [tree indexes of trees flanking window], [sequence length based weights
 	of each of the trees])
 	'''
+
 	total = sum(1 for i in range(int(ts.get_sequence_length())//overlap) 
-			if i*overlap+windowsize < ts.get_sequence_length())
+			if i*overlap+windowsize - 1 < ts.get_sequence_length())
 	progress_bar = tqdm.tqdm(total=total)
 	progress_bar.set_description(desc='determining windows')
 
@@ -57,7 +57,7 @@ def windows(ts, windowsize, overlap):
 	result_dict = dict()
 
 	for index in range(seq_len//overlap):
-		start, stop = index*overlap, index*overlap+windowsize  
+		start, stop = index*overlap, index*overlap+windowsize-1  
 		if stop < seq_len:
 			temp_tree = tree_tree.copy()
 			temp_tree.slice(stop)
@@ -88,9 +88,7 @@ def tree_Fst(ts, subsample_p1, subsample_p2, combinatorial_weights):
 		p2 = np.mean([tree.tmrca(u,v) for u,v in itertools.combinations(subsample_p2, 2)])
 		within_av = np.mean([p1,p2])
 		between = np.mean([tree.tmrca(u,v) for u,v in itertools.product(subsample_p1, subsample_p2)])
-		#data_av = np.average([p1,p2,between], weights=combinatorial_weights, axis=0)
 		data_av = np.mean([within_av,between])
-		#within_av = np.average([p1,p2], weights=combinatorial_weights[:-1], axis=0)
 		tree_Fst_dict[thread_index] = (data_av - within_av)/data_av
 		progress_bar.update()
 
