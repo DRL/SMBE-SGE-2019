@@ -1,0 +1,78 @@
+initialize() {
+	//all parameters are rescaled by a factor 1000 to make simulations more efficient
+	defineConstant('seqLength', 8.5e6);
+	defineConstant("migration", 3.8866e-4);
+	defineConstant("mutation_rate", 1.9e-6);
+	defineConstant('recombination_rate', 1.15e-5);
+
+	defineConstant('Nep0', 2324);
+	defineConstant('Nep1', 989);
+	defineConstant('start_frequency', 0.1);
+
+	ends = c(4250000+1600, asInteger(seqLength));
+	rates = c(mutation_rate, 0);
+	initializeMutationRate(rates, ends);
+	initializeRecombinationRate(1.84675e-5);
+	
+	
+	// m1 mutation = mutation under divergent selection
+	initializeMutationType("m1", 0.5, "e", 0.01);  //neutral muitations
+	initializeMutationType("m2", 0.5, "e", 0.001);
+
+	// g1 genomic element type: uses m1 for all mutations
+	
+	window_g1 = sample(4250000-1600+seqLen(3200), 10);
+	defineConstant('POS1', window_g1);
+	initializeGenomicElementType("g1", m1, 1.0);
+	for (pos in window_g1)
+		{initializeGenomicElement(g1, pos, pos);}
+	
+	window_g2 = sample(2125000-1600+seqLen(3200), 10); 
+	defineConstant('POS2', window_g2);
+	initializeGenomicElementType("g2", m2, 1.0);
+	for (pos in window_g2)
+		{initializeGenomicElement(g2, pos, pos);}
+
+	initializeTreeSeq();
+	setwd('/exports/csce/eddie/biology/groups/lohselab/sims/output/HeliconiusPopHist/slim');
+	
+}
+
+
+1 late() {
+	//initialize population with Ne_ancestral = Nep0
+	
+	sim.addSubpop("p0", Nep0);
+	//add mutation under divergent selection at a certain starting frequency
+	//randomly draw n individuals at predefined frequency
+	p0_genomes = p0.genomes;
+	for (pos in POS1){
+		isPlus = asLogical(rbinom(size(p0_genomes), 1, start_frequency));
+		p0_genomes[isPlus].addNewDrawnMutation(m1, pos);
+		}
+	for (pos in POS2){
+		isPlus = asLogical(rbinom(size(p0_genomes), 1, start_frequency));
+		p0_genomes[isPlus].addNewDrawnMutation(m2, pos);
+		}
+
+	}
+1 fitness(m2) {return 1.0;}
+1 fitness(m1) {return 1.0;}
+
+1: late() {
+	//simplify treeSeq every 200 timesteps
+	if (sim.generation%200 == 0){sim.treeSeqSimplify();}}
+
+2 late() {
+	sim.addSubpopSplit("p1", Nep1, p0);
+	//migration from pop0 to pop1
+	p1.setMigrationRates(p0, migration);
+	
+	}
+2: fitness(m1,p0) {return 1.0;}
+2: fitness(m2, p0) {return 1.0;}
+	
+
+4858 late() {
+	sim.treeSeqOutput('sim.trees');
+	sim.simulationFinished(); }
