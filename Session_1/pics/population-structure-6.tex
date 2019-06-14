@@ -42,14 +42,17 @@ mutations/.style={shape=starburst,fill=red!50!blue,inner sep=0.8pt,starburst poi
 \node[rotate=90,anchor=south] (leftLabel) at ($(leftAx) + (-0.3,2.5)$) {$\textrm{Time}$};
 
 % Populations
-\foreach \x in {0,1} \fill[pop\x] ($(leftAx) + (pop\x)$) -- ++(0,5) -- ++(2, 0) -- ++(0, -5) -- cycle;
+\fill[pop0] ($(leftAx) + (pop0)$) -- ++(0,5) -- ++(2, 0) -- ++(0, -5) -- cycle;
 \foreach \x in {0,1} \node[above,pop\x] (label\x) at ($(leftAx) + (pop\x) + (1, 5)$) {Population \x};
-\fill[white] ($(leftAx) + (pop1) + (-.1,4.15)$) -- ++(2.2,0) -- ++(0,.87) -- ++(-2.2,0) -- cycle;
+\fill[white] ($(leftAx) + (pop0) + (-.1,1)$) -- ++ (0,2) -- ++ (0.5, 0) -- ++(0,-2) -- cycle;
+\fill[white] ($(leftAx) + (pop0) + (1.5,0) + (.1,1)$) -- ++ (0,2) -- ++ (0.5, 0) -- ++(0,-2) -- cycle;
+\fill[pop1] ($(leftAx) + (pop1) + (.5,0)$) -- ++(0,5) -- ++(1,0) -- ++(0,-5) -- cycle;
+\fill[pop1] ($(leftAx) + (pop1) $) to[out=55,in=90] ++(.51,2) -- ++(0,-2) -- cycle;
+\fill[pop1] ($(leftAx) + (pop1) + (popwidth)$) to[out=125,in=90] ++(-.51,2) -- ++(0,-2) -- cycle;
 
 % Migrations
-\foreach \y in {0,1,2,3} \draw[pop0,dashed,->,very thick] ($(.1,.1) + (leftAx) + (0,\y + .5)+(pop0) + (popwidth)$) -- +(2.3,0);
-\foreach \y in {0,1,2,3} \draw[pop1,dashed,->,very thick] ($(-.1,-.1) + (leftAx) + (0,\y + .5)+(pop1)$) -- +(-2.3,0);
-\draw[pop0,->,line width=2mm] ($(.1,0) + (leftAx) + (0,4)+(pop0) + (popwidth)$) -- +(2.3,0);
+\foreach \y in {0,1,2,3,4} \draw[pop0,dashed,->,very thick] ($(.1,.1) + (leftAx) + (0,\y + .5)+(pop0) + (popwidth)$) -- +(2.3,0);
+\foreach \y in {0,1,2,3,4} \draw[pop1,dashed,->,very thick] ($(-.1,-.1) + (leftAx) + (0,\y + .5)+(pop1)$) -- +(-2.3,0);
 
 % Times
 \draw[densely dashed,color=gray] (8,0) node[below left] {\tiny Present day} -- (-1,0);

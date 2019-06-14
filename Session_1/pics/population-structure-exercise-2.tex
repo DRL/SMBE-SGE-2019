@@ -19,7 +19,7 @@
 \usetikzlibrary{shapes.symbols}
 
 % tikz colour settings
-\tikzset{pop0/.style={red!70},pop1/.style={blue!70}}
+\tikzset{pop0/.style={red!70},pop1/.style={blue!70},pop2/.style={teal!70}}
 
 %% ----------------------------------------------------------------
 \begin{document}
@@ -32,6 +32,7 @@ mutations/.style={shape=starburst,fill=red!50!blue,inner sep=0.8pt,starburst poi
 \node (origin) at (0,0){};
 \node (pop0) at (1,0){};
 \node (pop1) at (5.5,0){};
+\node (pop2) at (10,0){};
 \node (popwidth) at (2,0){};
 
 % Axis
@@ -42,17 +43,18 @@ mutations/.style={shape=starburst,fill=red!50!blue,inner sep=0.8pt,starburst poi
 \node[rotate=90,anchor=south] (leftLabel) at ($(leftAx) + (-0.3,2.5)$) {$\textrm{Time}$};
 
 % Populations
-\foreach \x in {0,1} \fill[pop\x] ($(leftAx) + (pop\x)$) -- ++(0,5) -- ++(2, 0) -- ++(0, -5) -- cycle;
-\foreach \x in {0,1} \node[above,pop\x] (label\x) at ($(leftAx) + (pop\x) + (1, 5)$) {Population \x};
-\fill[white] ($(leftAx) + (pop1) + (-.1,4.15)$) -- ++(2.2,0) -- ++(0,.87) -- ++(-2.2,0) -- cycle;
+\fill[pop0] ($(leftAx) + (pop0)$) -- ++(0,5) -- ++(2, 0) -- ++(0, -5) -- cycle;
+\fill[pop1] ($(leftAx) + (pop1)$) -- ++(0,4) -- ++(2, 0) -- ++(0, -4) -- cycle;
+\fill[pop2] ($(leftAx) + (pop2)$) -- ++(0,3) -- ++(2, 0) -- ++(0, -3) -- cycle;
+\foreach \x in {0,1,2} \node[above,pop\x] (label\x) at ($(leftAx) + (pop\x) + (1, 5) + (0,-\x)$) {Population \x};
+%\fill[white] ($(leftAx) + (pop1) + (-.1,4.15)$) -- ++(2.2,0) -- ++(0,.87) -- ++(-2.2,0) -- cycle;
 
 % Migrations
-\foreach \y in {0,1,2,3} \draw[pop0,dashed,->,very thick] ($(.1,.1) + (leftAx) + (0,\y + .5)+(pop0) + (popwidth)$) -- +(2.3,0);
-\foreach \y in {0,1,2,3} \draw[pop1,dashed,->,very thick] ($(-.1,-.1) + (leftAx) + (0,\y + .5)+(pop1)$) -- +(-2.3,0);
 \draw[pop0,->,line width=2mm] ($(.1,0) + (leftAx) + (0,4)+(pop0) + (popwidth)$) -- +(2.3,0);
+\draw[pop1,->,line width=2mm] ($(.1,0) + (leftAx) + (0,3)+(pop1) + (popwidth)$) -- +(2.3,0);
 
 % Times
-\draw[densely dashed,color=gray] (8,0) node[below left] {\tiny Present day} -- (-1,0);
+\draw[densely dashed,color=gray] (12,0) node[below left] {\tiny Present day} -- (-1,0);
 
 \end{tikzpicture} 
 \end{document}  % The End
