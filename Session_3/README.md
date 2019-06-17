@@ -295,4 +295,4 @@ This will create four output files:
 - How do the genome scans differ between the n=5 and n=10 datasets?
 - Look again at the ```*.distance.png``` file you generated earlier. Could you use this plot to select a more appropriate value for the argument ```--max_block_distance``` in ```gIMble windows```? Do the results change?
 
-In the next session we will use a globabl ```*.variants.h5``` file (computed on the entire ```Heliconius``` genome) to estimate parameters under the divergence model (using the ```gIMble likelihood``` module) and the ```*.windows.h5``` file to perform a gridsearch across the windows of chr18 (using the ```gIMble gridsearch``` module). 
+In the next session we will use a global ```*.variants.h5``` file (computed on the entire ```Heliconius``` genome) to estimate parameters under the divergence model (using the ```gIMble likelihood``` module) and the ```*.windows.h5``` file to perform a gridsearch across the windows of chr18 (using the ```gIMble gridsearch``` module). 
