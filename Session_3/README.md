@@ -11,7 +11,7 @@ variation data – as records in a VCF file – into blocks of uniform length an
 These blocks are the basic unit of data for subsequent demographic inference.     
 
 ### 0.1 Input data
-We will analyse variation within and between two species of *Heliconius* butterflies – *H. melpomene rosina* (‘ros’) and *H. cydno chioneus* ('chi') – along chromosome 18 ('Chr18') of the reference genome ```Hmel2``` (Davey et al, 2017). Each population is composed of 10 samples. All input files for this session can be found in the folder ```/data/hmel.chr18/```.
+We will analyse variation within and between two species of *Heliconius* butterflies – *H. melpomene rosina* (‘ros’) and *H. cydno chioneus* ('chi') – along chromosome 18 ('Chr18') of the reference genome ```Hmel2``` (Davey et al, 2017). Each population is composed of 10 samples. All input files for this session can be found in the folder ```/data/hmel.chr18/```. We will use the input data (VCF file, BED multinter coverage file, genome file and sample file) to construct 'blocks' of 64 b across the genome, record the variation within the blocks across the samples that cover it, filter the blocks and port them to an alternative coordinate system, and group blocks into sliding windows across the genome to compute genome scans and generate the input data for the demograghy analysis we will tackle in the following session.      
 
 ### 0.2 Input data formats
 
@@ -295,4 +295,4 @@ This will create four output files:
 - How do the genome scans differ between the n=5 and n=10 datasets?
 - Look again at the ```*.distance.png``` file you generated earlier. Could you use this plot to select a more appropriate value for the argument ```--max_block_distance``` in ```gIMble windows```? Do the results change?
 
-In the next session we will use the *.variants.h5 file to estimate parameters under the divergence model (```gIMble likelihood```) and the ```*.windows.h5``` file to perform a gridsearch across the windows of chr18 (```gIMble gridsearch```). 
+In the next session we will use a globabl ```*.variants.h5``` file (computed on the entire ```Heliconius``` genome) to estimate parameters under the divergence model (using the ```gIMble likelihood``` module) and the ```*.windows.h5``` file to perform a gridsearch across the windows of chr18 (using the ```gIMble gridsearch``` module). 
