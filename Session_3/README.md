@@ -69,15 +69,15 @@ Output files written by ```gIMble``` are either PNG (Portable Network Graphics) 
 ## 1. ```gIMble``` modules
 In this session, we are going to analyse the ```Heliconius``` data for Chr18 using five ```gIMble``` modules:
 
-```gIMble blocks```: constructs blocks (of fixed length) along the genome, while maximising coverage across pairs of samples between the two species based on the BED file.
+* ```gIMble blocks```: constructs blocks (of fixed length) along the genome, while maximising coverage across pairs of samples between the two species based on the BED file.
 
-```gIMble variants```: queries genotypes from the VCF file for the samples present in each block and records block-wise variation data. 
+* ```gIMble variants```: queries genotypes from the VCF file for the samples present in each block and records block-wise variation data. 
 
-```gIMble modify blocks```: transforms the coordinate system from *Heliconius* ```Hmel``` scaffolds/contigs to ```Hmel``` chromosomes using a coordinate mapping file.
+* ```gIMble modify blocks```: transforms the coordinate system from *Heliconius* ```Hmel``` scaffolds/contigs to ```Hmel``` chromosomes using a coordinate mapping file.
 
-```gIMble modify variants```: filters variation data based on the occurrence of missing/multiallelic genotypes within blocks. 
+* ```gIMble modify variants```: filters variation data based on the occurrence of missing/multiallelic genotypes within blocks. 
 
-```gIMble windows```: constructs sliding windows of constant number of blocks across the genome and records window-wise variation data.
+* ```gIMble windows```: constructs sliding windows of constant number of blocks across the genome and records window-wise variation data.
 
 ### 1.0 Concepts
 
@@ -107,7 +107,7 @@ In order to understand what is happening under the hood when running ```gIMble``
 
 * **window**: a window is composed of a set of neighbouring blocks with uniform count. Variation within windows is recorded as the tally of mutuples contained in its blocks.
 
-##  1.1 ```gIMble blocks```
+## 1.1 ```gIMble blocks```
 
 We will construct blocks based on the BED intervals contained in the file ```hmel.chr18.bed```. We will pass sample and genome sequence length information via the files ```hmel.samples.csv``` and ```hmel.chr18.genomefile```, respectively. We also will run the analysis using four threads (```-t 4```).
 
@@ -166,7 +166,7 @@ Using the program ```hdf5v.py``` (located in the ```gIMble/``` folder), one can 
 ./hdf5v.py -f hmel.chr18.n_5.blocks.h5  -c 
 ```
 
-## 1.2 ```gIMble variants```
+## 1.2 ```gIMble variants```
 
 For the blocks we created in the previous step, we will now query the VCF file for variation of the samples contained in the IPs. For this we have to pass the VCF file ```hmel.chr18.vcf.gz``` using the ```-v``` argument and the previously created blocks HDF5 datastore.
 
@@ -257,7 +257,7 @@ This will generate output files analogous to the ```gIMble variant``` module. Ho
 - How many mutuples are excluded based on the applied filter?
 - Which mutuples are excluded? How can you find out?
 
-## 1.3 ```gIMble windows```
+## 1.4 ```gIMble windows```
 
 In the last step we will join neighbouring blocks into sliding windows with a defined number of blocks and a defined overlap of blocks between windows. This will allow us to plot metrics across the genome and collect mutuple tallies for the windows which we will use in the inference session. Keep in mind that since we have changed the coordinate system we now have to provide the genomefile of chr18 ```hmel.chr18.new_coordinates.genomefile```. 
 
