@@ -1,10 +1,10 @@
 # Session 3
 
-# gIMble part 1: Filtering, blocking and visualising
+# ```gIMble``` part 1: Filtering, blocking and visualising
 
 ## 0. Introduction
 
-The software gIMble (**g**enome-wide **IM** **b**lockwise **l**ikelihood **e**stimation) is a toolkit for compressing 
+The software ```gIMble``` (**g**enome-wide **IM** **b**lockwise **l**ikelihood **e**stimation) is a toolkit for compressing 
 coverage data – in the form of BED intervals shared across samples – and
 variation data – as records in a VCF file – into blocks of uniform length and constant sample coverage for which we record certain types of mutation configurations. 
 
@@ -25,7 +25,7 @@ We will analyse variation within and between two species of *Heliconius* butterf
 This has obvious implications for population genetic inference since it blurs the distinction between variable and monomorphic sites.
 
 **Coverage data**
-- One way of dealing with the issue of differential coverage is identifying genomic regions with acceptable coverage (above/below certain thresholds) in each sample. This can be achieved using [GATK’s CallableLoci Tool](https://software.broadinstitute.org/gatk/documentation/tooldocs/3.8-0/org_broadinstitute_gatk_tools_walkers_coverage_CallableLoci.php) – to identify “callable” regions based on the BAM files for each sample – followed by intersection of the resulting BED files using [BedTool multiinter](https://bedtools.readthedocs.io/en/latest/index.html). This yields a BED file in which the last column of each interval describes the set of samples that cover it at acceptable coverage, e.g.:
+- One way of dealing with the issue of differential coverage is identifying genomic regions with acceptable coverage (above/below certain thresholds) in each sample. This can be achieved using [GATK’s CallableLoci Tool](https://software.broadinstitute.org/gatk/documentation/tooldocs/3.8-0/org_broadinstitute_gatk_tools_walkers_coverage_CallableLoci.php) – to identify “callable” regions based on the BAM files for each sample – followed by intersection of the resulting BED files using [bedtools multiinter](https://bedtools.readthedocs.io/en/latest/index.html). This yields a BED file in which the last column of each interval describes the set of samples that cover it at acceptable coverage, e.g.:
 
 ```
 chrom	start	end	num	list
@@ -49,7 +49,7 @@ chr3	1895173
 ```
 
 **Sample information data**
-Analysis of variation within and between samples of two populations/species is only possible if the samples are labelled by population. We do this using a sample (CSV) file in the following format:
+Analysis of variation within and between samples of two populations/species is only possible if the samples are labelled by population. We do this using a sample file (CSV) in the following format:
 
 ```
 A,pop1
@@ -61,12 +61,12 @@ Z,pop2
 ```
 
 ### 0.3 Data consistency
-Successful execution of gIMble analyses is only possible if variation, coverage, genomic sequence and sample information data can be linked within gIMble. Therefore, the SAME sequence/sample IDs have to be used across the files.
+Successful execution of ```gIMble``` analyses is only possible if variation, coverage, genomic sequence and sample information data can be linked within gIMble. Therefore, the SAME sequence/sample IDs have to be used across the files.
 
 ### 0.4 Output data formats
-Output files written by gIMble are either PNG (Portable Network Graphics) image files or tables in HDF (Hierarchical Data Format) files. Tables from the HDF output files can easily be exported into CSV/TSV files for post-processing by using the script ```hdf5v.py``` in the ```~/gIMble``` folder.
+Output files written by ```gIMble``` are either PNG (Portable Network Graphics) image files or tables in HDF (Hierarchical Data Format) files. Tables from the HDF output files can easily be exported into CSV/TSV files for post-processing by using the script ```hdf5v.py``` in the ```~/gIMble``` folder.
 
-## 1. gIMble analyses
+## 1. ```gIMble``` modules
 In this session, we are going to analyse the ```Heliconius``` data for Chr18 using five ```gIMble``` modules:
 
 ```gIMble blocks```: constructs blocks (of fixed length) along the genome, while maximising coverage across pairs of samples between the two species based on the BED file.
@@ -225,7 +225,7 @@ In this and the next step we will modify the existing block and variant HDF5 dat
 	-b hmel.chr18.n_10.blocks.h5
 ```
 
-Each of these commands will generate three files (analogous to the gIMble blocks module)
+Each of these commands will generate three files (analogous to those of ```gIMble blocks```)
 - ```*.modified.blocks.h5```
 - ```*.modified.distance.png```
 - ```*.modified.blocks_per_sample.png```
@@ -294,5 +294,3 @@ This will create four output files:
 - Look again at the ```*.distance.png``` file you generated earlier. Could you use this plot to select a more appropriate value for the argument ```--max_block_distance``` in ```gIMble windows```? Do the results change?
 
 In the next session we will use the *.variants.h5 file to estimate parameters under the divergence model (```gIMble likelihood```) and the ```*.windows.h5``` file to perform a gridsearch across the windows of chr18 (```gIMble gridsearch```). 
-
-
