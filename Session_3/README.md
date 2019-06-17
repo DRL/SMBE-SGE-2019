@@ -231,7 +231,7 @@ Each of these commands will generate three files (analogous to those of ```gIMbl
 - ```*.modified.distance.png```
 - ```*.modified.blocks_per_sample.png```
 
-The plots should show no differences to the previous plots generated with ```gIMble blocks```, as all blocks are being retained and converted into the coordinate system specified in the file ```hmel.chr18.chrom_coordinates.txt``` (you can use ```less``` to actually look into the file). If some contigs in the dataset were not allocated chr18, these would be excluded from the output.
+The plots should show no differences to the previous plots generated with ```gIMble blocks```, as all blocks are being retained and converted into the coordinate system specified in the file ```hmel.chr18.chrom_coordinates.txt``` (you can use ```less``` to actually look into the file). If some contigs in the dataset were not allocated to Chr18, these would be excluded from the output.
 
 To filter mutuples associated with high counts of missing genotypes in blocks (we will not filter on multiallelic genotype counts), run one of the following commands based on which variant HDF5 datastore you have created previously.
  
@@ -273,7 +273,7 @@ In the last step we will join neighbouring blocks into sliding windows with a de
 	-l 100 \
 	-t 4
 
-# n -10
+# n = 10
 ./gIMble windows \
 	-s /data/hmel.chr18/hmel.samples.csv \
 	-g /data/hmel.chr18/hmel.chr18.new_coordinates.genomefile \
