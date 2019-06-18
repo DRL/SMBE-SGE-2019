@@ -49,7 +49,7 @@ Based on the model, we will estimate the two parameters: &theta; (per block) and
 
 We now want to allow for migration at a constant rate *M*=4\**N*<sub>e</sub>*m*. 
 
-![IM model](https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/IM.pdf "IM model")
+![IM model](https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/IM.jpg "IM model")
 
 However, maximising lnCL for the IM model takes several hours (and is not implemented stabily in gIMble likelihood) so we will simply examine precooked point estimates:
 
