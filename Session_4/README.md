@@ -10,7 +10,7 @@ To be able to fit a demographic model we require a ‘model’ file, in this cas
 ## ```gIMble likelihood```
 The divergence model which we are using is simple (two parameters &theta; – assumed to be the same for both species and the ancestor for now – and *T*), i.e. one population is constrained to have the same *N*<sub>e</sub> as the ancestral population. 
 
-![Divergence model](https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/divergence.jpg "Divergence model")
+<img src="https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/divergence.jpg" alt="Divergence model" width="350" height="350">
 
 ```gIMble likelihood``` employs a heuristic simplex algorithm (Nelder-Mead) to maximise composite likelihood (lnCL). For the likelihood search, one can either fix certain parameters or provide upper and lower bounds which are then used in the starting simplex of the heuristic search. 
 
@@ -49,7 +49,7 @@ Based on the model, we will estimate the two parameters: &theta; (per block) and
 
 We now want to allow for migration at a constant rate *M*=4\**N*<sub>e</sub>*m*. 
 
-![IM model](https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/IM.jpg "IM model")
+<img src="https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/IM.jpg" alt="IM model" width="350" height="350">
 
 However, maximising lnCL for the IM model takes several hours (and is not implemented stabily in gIMble likelihood) so we will simply examine precooked point estimates:
 
