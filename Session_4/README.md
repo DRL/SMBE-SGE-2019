@@ -8,7 +8,9 @@ The data for which we want to estimate demographic parameters are the pre-comput
 To be able to fit a demographic model we require a ‘model’ file, in this case```~/gIMble/models/divergence.txt```. In addition, we need to specify the sample (and genome) file we have used in the previous session. 
 
 ## ```gIMble likelihood```
-The model which we are using is simple (two parameters &theta; – assumed to be the same for both species and the ancestor for now – and *T*) and highly asymmetric: all models currently implemented in ```gIMble likelihood``` assume two *N*<sub>e</sub> parameters, i.e. one population is constrained to have the same *N*<sub>e</sub> as the ancestral population. 
+The divergence model which we are using is simple (two parameters &theta; – assumed to be the same for both species and the ancestor for now – and *T*), i.e. one population is constrained to have the same *N*<sub>e</sub> as the ancestral population. 
+
+![Divergence model](https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/divergence.jpg "Divergence model")
 
 ```gIMble likelihood``` employs a heuristic simplex algorithm (Nelder-Mead) to maximise composite likelihood (lnCL). For the likelihood search, one can either fix certain parameters or provide upper and lower bounds which are then used in the starting simplex of the heuristic search. 
 
@@ -46,6 +48,8 @@ Based on the model, we will estimate the two parameters: &theta; (per block) and
 ## More complex models
 
 We now want to allow for migration at a constant rate *M*=4\**N*<sub>e</sub>*m*. 
+
+![IM model](https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_4/IM.pdf "IM model")
 
 However, maximising lnCL for the IM model takes several hours (and is not implemented stabily in gIMble likelihood) so we will simply examine precooked point estimates:
 
