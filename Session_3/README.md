@@ -115,6 +115,14 @@ In order to understand what is happening under the hood when running ```gIMble``
 
 * **window**: a window is composed of a set of neighbouring blocks with uniform count. Variation within windows is recorded as the tally of mutuples contained in its blocks.
 
+## 1.0.1 Basics
+
+We are working from the gIMble folder located in your home directory, hence run:
+
+``` 
+cd ~/gIMble/
+```
+
 ## 1.1 ```gIMble blocks```
 
 We will construct blocks based on the BED intervals contained in the file ```hmel.chr18.bed```. We will pass sample and genome sequence length information via the files ```hmel.samples.csv``` and ```hmel.chr18.genomefile```, respectively. We also will run the analysis using four threads (```-t 4```).
