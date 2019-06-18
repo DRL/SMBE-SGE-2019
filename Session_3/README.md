@@ -98,7 +98,9 @@ In order to understand what is happening under the hood when running ```gIMble``
   * Its length – the sum of lengths of its BED intervals – is uniform and specified at the beginning of the analysis. Based on the uniform length we can assume &theta; to be comparable across blocks. (During this practical we will construct blocks that are 64 b long).
   * The IP composition of a block is the intersection of IPs across its BED intervals. For all its IPs – and the underlying samples – both monomorphic and variant sites are recorded.
   * A block can contain gaps, as long as its span – the distance between the start of its first and the end of its last BED interval – does not exceed a given threshold. We will set this threshold to 80 b, thereby allowing up to 16 b between BED intervals to not be covered by any of the block’s IPs. 
-  * Variation within a block is recorded for each IP and is encoded as a **mutuple** consisting of four categories (mutypes): **hetA**, **fixed**, **hetB**, and **hetAB**. For some examples as to how genotypes are encoded as mutuples see the following table. In addtion, two other counts per block and IP are recorded – the number of multiallelic and missing genotypes; based on these blocks can be included/excluded from the analysis.
+  * Variation within a block is recorded for each IP and is encoded as a **mutuple** consisting of four categories (mutypes, see figure below): **hetA**, **fixed**, **hetB**, and **hetAB**. For some examples as to how genotypes are encoded as mutuples see the table below the figure. In addtion, two other counts per block and IP are recorded – the number of multiallelic and missing genotypes; based on these blocks can be included/excluded from the analysis.
+
+![Figure 2](https://github.com/DRL/SMBE-SGE-2019/blob/master/Session_3/mutypes.png "Figure 2")
 
 | GT of sample A  | GT of sample B |Mutype| 
 | ------------- | ------------- | ------------- |
