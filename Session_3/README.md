@@ -117,7 +117,7 @@ In order to understand what is happening under the hood when running ```gIMble``
 
 ## 1.0.1 Basics
 
-We are working from the gIMble folder located in your home directory, hence run:
+We are working from the ```gIMble``` folder located in your home directory (which is a clone of the GitHub repository [https://github.com/DRL/gIMble](https://github.com/DRL/gIMble)), hence run:
 
 ``` 
 cd ~/gIMble/
