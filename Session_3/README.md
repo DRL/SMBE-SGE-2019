@@ -292,9 +292,9 @@ In the last step we will join neighbouring blocks into sliding windows with a de
 ```
 
 This will create four output files:
-- ```*.fst_genome_scan.png``` : a *F*<sub>st</sub>; scan across chr18
+- ```*.fst_genome_scan.png``` : a *F*<sub>st</sub> scan across chr18
 - ```*.pi_genome_scan.png``` : a &pi; scan across chr18
-- ```*.pi_scatter.png``` : &pi; vs. *D*<sub>xy</sub>; scatter plots of all windows in chr18
+- ```*.pi_scatter.png``` : &pi; vs. *D*<sub>xy</sub> scatter plots of all windows in chr18
 - ```*.windows.h5``` : the HDF5 datastore of windows
 
 **Questions**:
