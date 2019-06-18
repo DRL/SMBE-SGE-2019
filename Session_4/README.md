@@ -60,7 +60,7 @@ However, maximising lnCL for the IM model takes several hours (and is not implem
 |IM2 (Ancestor = 'ros', 'ros'->'chi') | -4.9822E+08 | 1.0643 | 1.0408 | 0.5323 | 1.2735|
 |IM2 (Ancestor = 'chi', 'ros'->'chi') | -4.9799E+08 | 1.1904 | 1.3832 | 0.3351 | 0.1920|
 
-*Questions*: 
+**Questions**: 
 * There are four possible IM models: Which one fits best and how do *T* and *N*<sub>e</sub> differ from the divergence models we fitted previously? 
 * By how much does model support increase when we include gene flow? 
 * What is the probability of migration per lineage and generation (this is what we would need to set up an msprime simulation)?
