@@ -203,8 +203,8 @@ Again, we will pass sample and genome sequence length information via the files 
 	-s /data/hmel.chr18/hmel.samples.csv \
 	-g /data/hmel.chr18/hmel.chr18.genomefile \
 	-v /data/hmel.chr18/hmel.chr18.vcf.gz \
-	-o hmel.chr18.n_5 \
-	-b hmel.chr18.n_5.blocks.h5 \
+	-o hmel.chr18.n_10 \
+	-b hmel.chr18.n_10.blocks.h5 \
 	-t 4
 ```
 
@@ -282,9 +282,9 @@ In the last step we will join neighbouring blocks into sliding windows with a de
 ./gIMble windows \
 	-s /data/hmel.chr18/hmel.samples.csv \
 	-g /data/hmel.chr18/hmel.chr18.new_coordinates.genomefile \
-	-b hmel.chr18.n_10.modified.blocks.h5 \
-	-v hmel.chr18.n_10.modified.variants.h5 \
-	-o hmel.chr18.n_10 \
+	-b hmel.chr18.n_5.modified.blocks.h5 \
+	-v hmel.chr18.n_5.modified.variants.h5 \
+	-o hmel.chr18.n_5 \
 	-w 500 \
 	-l 100 \
 	-t 4
