@@ -2,6 +2,8 @@ FROM jupyter/scipy-notebook
 
 USER root
 
+COPY . ${HOME}
+
 # Install CMake, GSL and xcas (for giac)
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get clean
